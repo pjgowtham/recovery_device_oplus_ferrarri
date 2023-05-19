@@ -41,9 +41,19 @@ on fs
 on boot
     start health-hal-2-1
 
+on property:ro.boot.prjname=*
+    start load_oplus_props
+
 on post-fs
     start boot-hal-1-2
 
 on property:dev.mnt.blk.firmware=*
     write /sys/kernel/boot_adsp/boot 1
     wait /sys/class/power_supply/battery
+
+service load_oplus_props /system/bin/load_oplus_props.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
