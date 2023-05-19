@@ -70,3 +70,13 @@ on property:ro.twrp.fastbootd=1
     wait /sys/class/power_supply/battery
     start health-hal-2-1
     umount /firmware
+
+on property:ro.boot.prjname=*
+    start load_oplus_props
+
+service load_oplus_props /system/bin/load_oplus_props.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
