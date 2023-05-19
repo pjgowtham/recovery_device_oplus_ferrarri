@@ -23,7 +23,11 @@ case $oplus_project in
      "21341") # OnePlus Nord CE 2 Lite 5G
           resetprop ro.twrp.target.devices CPH2381,OP535DL1,CPH2409
           resetprop ro.product.device CPH2381
-          ;;          
+          ;;
+     "21631"|"216AC") # realme GT 2 Pro
+          resetprop ro.product.device RED8ACL1
+          resetprop vendor.usb.product_string "realme GT 2 Pro"
+          ;; 
      "21643"|"21644"|"21695") # Realme Q3S
           resetprop ro.twrp.target.devices RMX3461,RE548B,RMX3461T2,RE548BL1,RE54BFL1
           resetprop ro.product.device RMX3461
