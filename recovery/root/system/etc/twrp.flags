@@ -34,14 +34,5 @@
 /efsg2          emmc    /dev/block/bootdevice/by-name/fsg2                                  flags=backup=1;subpartitionof=/efs1
 /efsg3          emmc    /dev/block/bootdevice/by-name/fsg3                                  flags=backup=1;subpartitionof=/efs1
 
-# System Configuration & ASUS keys
-/sysconf        emmc    /dev/block/bootdevice/by-name/sysconf                               flags=backup=1;display="System Configuration Keys"
-/asuskey        emmc    /dev/block/bootdevice/by-name/asuskey                               flags=backup=1;subpartitionof=/sysconf
-/asuskey2       emmc    /dev/block/bootdevice/by-name/asuskey2                              flags=backup=1;subpartitionof=/sysconf
-/asuskey3       emmc    /dev/block/bootdevice/by-name/asuskey3                              flags=backup=1;subpartitionof=/sysconf
-/asuskey4       emmc    /dev/block/bootdevice/by-name/asuskey4                              flags=backup=1;subpartitionof=/sysconf
-/asuskey5       emmc    /dev/block/bootdevice/by-name/asuskey5                              flags=backup=1;subpartitionof=/sysconf
-/asuskey6       emmc    /dev/block/bootdevice/by-name/asuskey6                              flags=backup=1;subpartitionof=/sysconf
-
 # Removable storage
 /usbstorage     vfat    /dev/block/sdh1                                 /dev/block/sdh      flags=fsflags=utf8;display="USB Storage";storage;wipeingui;removable

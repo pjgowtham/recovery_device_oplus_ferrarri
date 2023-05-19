@@ -50,7 +50,7 @@ BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 BOARD_KERNEL_IMAGE_NAME := kernel
 BOARD_RAMDISK_USE_LZ4 := true
-TARGET_PREBUILT_KERNEL := $(COMMON_PATH)/prebuilt/$(BOARD_KERNEL_IMAGE_NAME)
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/$(BOARD_KERNEL_IMAGE_NAME)
 
 # Partition Info
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
@@ -111,7 +111,7 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     libxml2 \
     vendor.display.config@1.0 \
     vendor.display.config@2.0
-TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
 
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
@@ -132,9 +132,8 @@ PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
 # Extras
-BOARD_ROOT_EXTRA_FOLDERS := batinfo
-TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
-TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 # TWRP specific build flags
 TARGET_RECOVERY_QCOM_RTC_FIX := true
@@ -142,7 +141,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TW_THEME := portrait_hdpi
 TW_BACKUP_EXCLUSIONS := /data/fonts/files
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/devices/virtual/thermal/thermal_zone39/temp"
-TW_BRIGHTNESS_PATH := "/sys/devices/platform/soc/ae00000.qcom\x2cmdss_mdp/backlight/panel0-backlight/brightness"
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
 TW_DEFAULT_BRIGHTNESS := 420
 TW_QCOM_ATS_OFFSET := 1666528204500
 TW_EXCLUDE_APEX := true
@@ -150,6 +149,7 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_CRYPTO := true
 TW_NO_EXFAT_FUSE := true
+#TW_NO_SCREEN_BLANK := true
 TW_INCLUDE_RESETPROP := true
 TW_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
 TW_OVERRIDE_SYSTEM_PROPS := \
