@@ -27,6 +27,9 @@
 
 import /init.recovery.qcom_decrypt.rc
 
+on early-init
+    write /proc/sys/kernel/firmware_config/force_sysfs_fallback 1
+
 on init
     write /sys/class/backlight/panel0-backlight/brightness 200
 
@@ -47,7 +50,8 @@ on property:ro.boot.prjname=*
 on post-fs
     start boot-hal-1-2
 
-on property:dev.mnt.blk.firmware=*
+on property:twrp.modules.loaded=true && property:dev.mnt.blk.firmware=*
+    wait /sys/kernel/boot_adsp/boot
     write /sys/kernel/boot_adsp/boot 1
     wait /sys/class/power_supply/battery
 
