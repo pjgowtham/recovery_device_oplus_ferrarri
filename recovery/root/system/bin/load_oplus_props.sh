@@ -45,4 +45,7 @@ case $oplus_project in
           ;;
 esac
 
+while [ ! -f /sys/class/oplus_chg/usb/otg_switch ]; do sleep 1; done
+echo 1 > /sys/class/oplus_chg/usb/otg_switch
+
 exit 0

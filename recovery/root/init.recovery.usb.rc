@@ -88,6 +88,10 @@ on post-fs && property:vendor.usb.use_ffs_mtp=1
 on boot && property:vendor.usb.use_gadget_hal=1
    setprop sys.usb.configfs 2
 
+on boot
+    wait /sys/class/oplus_chg/usb/otg_switch 8
+    write /sys/class/oplus_chg/usb/otg_switch 1
+
 on property:sys.usb.config=* && property:sys.usb.configfs=2
    setprop vendor.usb.config ${sys.usb.config}
 
