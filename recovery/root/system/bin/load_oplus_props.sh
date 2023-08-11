@@ -15,7 +15,11 @@ case $oplus_project in
      "20826") # OnePlus Nord N20 5G
           resetprop ro.twrp.target.devices GN2200,OP515AL1
           resetprop ro.product.device GN2200
-          ;;          
+          ;;
+     "20846"|"20847"|"20848"|"20849"|"2084a"|"133194") # OnePlus 10 Pro
+          resetprop ro.twrp.target.devices OP516EL1,OP516FL1
+          resetprop vendor.usb.product_string "OnePlus 10 Pro 5G"
+          ;;  
      "21075") # Oppo K9S
           resetprop ro.twrp.target.devices OP524F,PERM10
           resetprop ro.product.device OP524F
@@ -43,6 +47,18 @@ case $oplus_project in
      "21707") # Realme 9 Pro 5G
           resetprop ro.twrp.target.devices RMX3471,RE54CBL1
           resetprop ro.product.device RMX3471
+          ;;
+     "22623"|"226A9"|"140969") # realme GT Neo 5 SE
+          resetprop ro.twrp.target.devices RE585F
+          resetprop vendor.usb.product_string "realme GT Neo 5 SE"
+          ;;
+     "22624"|"226AA"|"226AB"|"140970"|"140971") # realme GT Neo 5
+          resetprop ro.twrp.target.devices RE5860
+          resetprop vendor.usb.product_string "realme GT Neo 5"
+          ;;
+     "22803"|"22881")
+          resetprop ro.twrp.target.devices OP5961,OP5961L1
+          resetprop vendor.usb.product_string "OnePlus 11R 5G"
           ;;
 esac
 
