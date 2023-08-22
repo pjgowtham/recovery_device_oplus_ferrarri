@@ -24,8 +24,6 @@
 /efs2           emmc    /dev/block/bootdevice/by-name/modemst2                              flags=backup=1;subpartitionof=/efs1
 /efsc           emmc    /dev/block/bootdevice/by-name/fsc                                   flags=backup=1;subpartitionof=/efs1
 /efsg           emmc    /dev/block/bootdevice/by-name/fsg                                   flags=backup=1;subpartitionof=/efs1
-/efsg2          emmc    /dev/block/bootdevice/by-name/fsg2                                  flags=backup=1;subpartitionof=/efs1
-/efsg3          emmc    /dev/block/bootdevice/by-name/fsg3                                  flags=backup=1;subpartitionof=/efs1
 
 # Removable storage
 /usbstorage     vfat    /dev/block/sdh1                                 /dev/block/sdh      flags=fsflags=utf8;display="USB Storage";storage;wipeingui;removable
