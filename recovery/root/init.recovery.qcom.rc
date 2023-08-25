@@ -27,12 +27,19 @@
 
 import /init.recovery.qcom_decrypt.rc
 
+on early-init
+    write /proc/sys/kernel/firmware_config/force_sysfs_fallback 1
+
 on init
     write /sys/class/backlight/panel0-backlight/brightness 200
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+    # Load ADSP firmware for PMIC
+    mkdir /firmware
+    mount vfat /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /firmware ro
 
 on post-fs
     start boot-hal-1-2
@@ -47,11 +54,13 @@ on post-fs-data
     restorecon_recursive /batinfo
 # --- ASUS_BSP : add for asus battery safety upgrade and health partition
 
-on property:dev.mnt.blk.firmware=*
+on property:twrp.modules.loaded=true && property:dev.mnt.blk.firmware=*
     # Load ADSP firmware for PMIC
     wait /sys/kernel/boot_adsp/boot
     write /sys/kernel/boot_adsp/boot 1
     wait /sys/class/power_supply/battery
+    wait /sys/class/oplus_chg/usb/otg_switch
+    write /sys/class/oplus_chg/usb/otg_switch 1
     start health-hal-2-1
 
 on property:ro.twrp.fastbootd=1
@@ -60,3 +69,4 @@ on property:ro.twrp.fastbootd=1
     write /sys/kernel/boot_adsp/boot 1
     wait /sys/class/power_supply/battery
     start health-hal-2-1
+    umount /firmware
