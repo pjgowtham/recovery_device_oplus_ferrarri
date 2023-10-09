@@ -1,11 +1,4 @@
 # mount point   fstype  device                                          device2             flags
-# Logical partitions
-/system_ext     ext4    system_ext                                                          flags=display=System_EXT
-/vendor_dlkm    ext4    vendor_dlkm                                                         flags=display=Vendor_DLKM
-
-# Userdata/Metadata partitions
-/metadata       ext4    /dev/block/by-name/metadata                                         flags=display=Metadata
-
 # Other partitions
 /boot           emmc    /dev/block/bootdevice/by-name/boot                                  flags=slotselect
 /recovery       emmc    /dev/block/bootdevice/by-name/recovery                              flags=slotselect;display="Recovery";backup=1;flashimg=1
