@@ -161,6 +161,10 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
 TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko q6_dlkm.ko tntfs.ko"
 TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 
+# Vibrator
+TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
+
 # TWRP Debug Flags
 #TWRP_EVENT_LOGGING := true
 TARGET_USES_LOGD := true
@@ -182,15 +186,18 @@ ifneq ($(wildcard bootable/recovery/installer/.),)
 endif
 
 # Custom TWRP Versioning
-ifneq ($(wildcard device/common/version-info/.),)
-    # version prefix is optional - the default value is "LOCAL" if nothing is set in device tree
-    CUSTOM_TWRP_VERSION_PREFIX := CPTB
+# See https://github.com/minimal-manifest-twrp/android_device_common_version-info for details
+ifneq ($(USE_CUSTOM_VERSION),)
+    ifneq ($(wildcard device/common/version-info/.),)
+        # version prefix is optional - the default value is "LOCAL" if nothing is set in device tree
+        CUSTOM_TWRP_VERSION_PREFIX := CPTB
 
-    # Uncomment the below line to use custom device version
-    #include device/common/version-info/custom_twrp_version.mk
+        # Repo must be synced for automatic custom versioning to work
+        include device/common/version-info/custom_twrp_version.mk
 
-    ifeq ($(CUSTOM_TWRP_VERSION),)
-        CUSTOM_TWRP_VERSION := $(shell date +%Y%m%d)-01
+        ifeq ($(CUSTOM_TWRP_VERSION),)
+            CUSTOM_TWRP_VERSION := $(shell date +%Y%m%d)-01
+        endif
     endif
 endif
 #
