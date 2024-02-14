@@ -189,7 +189,7 @@ endif
 ifneq ($(USE_CUSTOM_VERSION),)
     ifneq ($(wildcard device/common/version-info/.),)
         # version prefix is optional - the default value is "LOCAL" if nothing is set in device tree
-        CUSTOM_TWRP_VERSION_PREFIX := CPTB
+        CUSTOM_TWRP_VERSION_PREFIX := OPLUS
 
         # Repo must be synced for automatic custom versioning to work
         include device/common/version-info/custom_twrp_version.mk
