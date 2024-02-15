@@ -1,1 +1,2 @@
 export ALLOW_MISSING_DEPENDENCIES=true
+export USE_CUSTOM_VERSION=true
